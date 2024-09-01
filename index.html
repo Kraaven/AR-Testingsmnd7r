@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>AR.js with Three.js</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/GLTFLoader/0.9.0/GLTFLoader.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
@@ -49,8 +48,7 @@
             });
 
             // Load 3D model
-            let loader = new THREE.GLTFLoader();
-            loader.load(
+            new THREE.GLTFLoader().load(
                 'assets/asset.glb',
                 function (gltf) {
                     let model = gltf.scene;
@@ -63,11 +61,11 @@
                         mixer.clipAction(clip).play();
                     });
 
-                    function animate() {
-                        requestAnimationFrame(animate);
+                    function animateModel() {
+                        requestAnimationFrame(animateModel);
                         if (mixer) mixer.update(0.01);
                     }
-                    animate();
+                    animateModel();
                 },
                 function (xhr) {
                     console.log((xhr.loaded / xhr.total * 100) + '% loaded');
